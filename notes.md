@@ -55,8 +55,6 @@ So what does the `<div>` element do and how does the `class="container"` attribu
 
 ### Adding the large images
 
-``
-
 Make sure to close the `<div class="containter">` element with a closing `</div>` tag. Then add another `<div>` element with the class 
 `mySlides`. 
 
@@ -89,6 +87,77 @@ Do this for each file in the `imgs` directory ending with the word `wide` . Can 
 ![image-20201019160812543](notes.assets/image-20201019160812543.png)
 
 ### Adding thumbnail images
+
+![xceWSYMlxl3ve2gK](notes.assets/xceWSYMlxl3ve2gK_small.jpg)
+
+The process for adding the the thumbnails to our image carrosell is similar to what we did with the bigger images except:
+
+- This time we are wrapping all of the elements in a div with a class `row` and each nested div is going to have a class of `column`
+
+```html
+<div class="row">
+  <div class="column">
+    <!-- where are img element will go -->
+  </div>
+</div>
+```
+- This time the `<img>` element will have three new attributes
+    - `class` with the value of `demo cursor`
+    - `alt` with a value that will describe what is in the image 
+    - `onclick` with the value of `currentSlide(1-6)`
+
+It will look like this:
+
+```html
+    <div class="column">
+        <img class="demo cursor" src="imgs/img_woods.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+    </div>
+    <div class="column">
+        <img class="demo cursor" src="imgs/img_city.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
+    </div>
+    <div class="column">
+        <img class="demo cursor" src="imgs/img_mountains.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
+    </div>
+```
+So what does the `onclick` attribute do? 
+
+similar to the way the `style` tag allows you to use CSS, the `onclick` attributes ***triggers*** javascript code. 
+
+![dontclicktrim](notes.assets/dontclicktrim.gif)
+
+To try this out by throwing the following snippet into an html file and open it on your desktop 
+
+```javascript
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    body {
+      text-align: center;
+    }
+  </style>
+  </head>
+<body>
+
+<p>What ever you do, DO NOT CLICK THIS BUTTON!!!!</p>
+
+<button onclick="myFunction()">DO NOT CLICK ME</button>
+
+<script>
+function myFunction() {
+  var x = document.createElement("P");
+  var t = document.createTextNode("STOP");
+  x.appendChild(t);
+  document.body.appendChild(x);
+}
+</script>
+
+</body>
+</html>
+
+```
+
+ Notice how we didn't have to spin up a webserver to do that? 
 
 
 
