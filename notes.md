@@ -157,7 +157,7 @@ function myFunction() {
 
 ```
 
- Notice how we didn't have to spin up a webserver to do that? 
+ Notice how we didn't have to spin up a web-server to do that? 
 
 
 
