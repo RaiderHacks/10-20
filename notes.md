@@ -1,3 +1,7 @@
+# Lets make a slide show
+
+![letsmakeslideshow](notes.assets/letsmakeslideshow.gif)
+
 ## The html
 
 ### `<html>`, `<head>` & `<body>` elements
@@ -51,6 +55,8 @@ So what does the `<div>` element do and how does the `class="container"` attribu
 
 ### Adding the large images
 
+``
+
 Make sure to close the `<div class="containter">` element with a closing `</div>` tag. Then add another `<div>` element with the class 
 `mySlides`. 
 
@@ -81,4 +87,8 @@ Then under that div we are going to add an `<img>` element which will render our
 Do this for each file in the `imgs` directory ending with the word `wide` . Can anyone guess why we need two seprate image sizes?
 
 ![image-20201019160812543](notes.assets/image-20201019160812543.png)
+
+### Adding thumbnail images
+
+
 
