@@ -1,4 +1,4 @@
-# Lets make a slide show
+# Let's make a slide show
 
 ![letsmakeslideshow](notes.assets/letsmakeslideshow.gif)
 
