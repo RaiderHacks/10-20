@@ -13,7 +13,7 @@ First we are going to start off with our html document. This tells the browser w
 ```
 
 Then we are going to add a `<head>` and a `body` tag within our html tags. 
-Elements within the `<head>` tag are not rendered to the user. The `<head>` tag is where we are going to link our css and javascript files so we still need it.  wElements within the `<body>` tag **are** rendered to the user
+Elements within the `<head>` tag are not rendered to the user. The `<head>` tag is where we are going to link our css and javascript files so we still need it. Elements within the `<body>` tag **are** rendered to the user
 
 
 ```html
@@ -247,7 +247,7 @@ For the sake of time and because Javascript isn't in the scope of this lesson le
 
 ![image-20201019191119010](notes.assets/image-20201019191119010.png)
 
-## The CSS file
+## The CSS 
 
 Paste the following into  `style.css`
 
