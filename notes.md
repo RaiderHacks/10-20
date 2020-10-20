@@ -108,7 +108,7 @@ The process for adding the the thumbnails to our image carrosell is similar to w
 
 It will look like this:
 
-```html
+```HTML
     <div class="column">
         <img class="demo cursor" src="imgs/img_woods.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
     </div>
@@ -119,6 +119,21 @@ It will look like this:
         <img class="demo cursor" src="imgs/img_mountains.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
     </div>
 ```
+After that add this snippet 
+
+```html
+ <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  <!-- Image text -->
+  <div class="caption-container">
+    <p id="caption"></p>
+  </div>
+```
+
+
+
 So what does the `onclick` attribute do? 
 
 similar to the way the `style` tag allows you to use CSS, the `onclick` attributes ***triggers*** javascript code. 
@@ -157,7 +172,187 @@ function myFunction() {
 
 ```
 
- Notice how we didn't have to spin up a web-server to do that? 
+Notice how we didn't have to spin up a web-server to do that? 
 
 
+
+Now what we have `onclick` doing on our `index.html` image is a little bit more complicated, but it won't even work if we don't link our Javascript.  Remember that `<head>` tag? Add the two following lines to it.
+
+```html
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+```
+
+Now write two more files to your project directory one named `script.js` and the other `style.css`. This is what our project directory should look like after this.
+
+```
+├── imgs
+│   ├── img_city.jpg
+│   ├── img_city_wide.jpg
+│   ├── img_lights.jpg
+│   ├── img_lights_wide.jpg
+│   ├── img_mountains.jpg
+│   ├── img_mountains_wide.jpg
+│   ├── img_nature.jpg
+│   ├── img_nature_wide.jpg
+│   ├── img_snow.jpg
+│   ├── img_snow_wide.jpg
+│   ├── img_woods.jpg
+│   └── img_woods_wide.jpg
+├── index.html
+├── script.js
+└── style.css
+```
+
+## The Javascript
+
+Open up `script.js` and paste the following code into it 
+
+```js
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+```
+
+For the sake of time and because Javascript isn't in the scope of this lesson lets focus on line 10 the `currentSlide()` function. We have 6 different  `<img>` elements that act as buttons in our `index.html` file.  Each image element when clicked calls the `currentSlide()` function with an argument `n` (We hardcoded `n`  with a value of one through six).  The function then passes the value of `n` to the `showSlides` function which triggers some spaghetti code that that changes the css display value all of our our `<div class="mySlides">`  to `"display: none;"` meaning they are hidden from the user. It then uses `n` to find the slide that the user selected and changes its css value to `display: block;`meaning it will live on its own line allowing it to be fully visible to the user. 
+
+![image-20201019191119010](notes.assets/image-20201019191119010.png)
+
+## The CSS file
+
+Paste the following into  `style.css`
+
+```css
+* {
+  box-sizing: border-box;
+}
+
+/* Position the image container (needed to position the left and right arrows) */
+.container {
+  position: relative;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Container for image text */
+.caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+```
+
+The CSS syntax is pretty goofy but it mostly consists of a **selector**, **property** and **value**. 
+
+
+
+![image-20201019192143727](notes.assets/image-20201019192143727.png)
+
+
+
+
+
+
+
+If this didn't work for you check out the real source code here 
+
+https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp
 
